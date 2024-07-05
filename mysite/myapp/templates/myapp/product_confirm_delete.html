@@ -1,0 +1,24 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+<h1  class="text-2xl font-bold m-10 text-red-500">Delete Product</h1>
+<form class="bg-white text-black shadow-md m-10 px-8 py-9 w-3/5" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-5">
+        <label class="block text-lg font-bold mb-2">Confirm To Delete the Product</label>
+    </div>
+    <div class="mb-5">
+        <label  class="block text-sm mb-2"> <b>Product Name :</b> {{product.name}}</label>
+    </div>
+
+    <div class="mb-5">
+        <label class="block text-sm font-bold mb-2">Product Image</label>
+        <img src="{{product.image.url}}" class="w-20 h-20">
+    </div>
+     <div class="mb-5">
+        <input class="rounded bg-red-500 text-white px-5 py-2 mr-6" type="submit" name="Delete" id="Delete" value="Delete Product">
+        <!-- <input class="rounded bg-green-500 text-white px-5 py-2" type="submit" name="Cancel" id="Cancel" value="Retain Product"> -->
+    </div>
+</form>
+{% endblock %}

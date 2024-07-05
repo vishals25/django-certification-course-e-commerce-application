@@ -1,0 +1,48 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+<h1 class="text-2xl font-bold m-10 text-green-500">+ Add Product</h1>
+
+<form class="bg-white text-black shadow-md m-10 px-8 py-9 w-3/5" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-5">
+        <label class="block text-sm font-bold mb-2">Product Name</label>
+            
+            <div class="shadow rounded border appearance-none py-3 px-4 ml-10 text-gray-700 w-1/4">
+                {{ form.name }}
+            </div>
+    </div>
+    <div class="mb-5">
+        <label class="block text-sm font-bold mb-2">Product Price</label>
+             <div class="shadow rounded border appearance-none py-3 px-5 ml-10 text-gray-700 w-1/4">
+                {{ form.price }}
+            </div>
+    </div>
+    <div class="mb-5">
+        <label class="block text-sm font-bold mb-2">Product Description</label>
+           <div class="shadow rounded border appearance-none py-3 px-4 ml-10 text-gray-700 w-1/4">
+                {{ form.desc }}
+            </div>
+    
+    </div>
+
+    <div class="mb-5">
+        <label class="block text-sm font-bold mb-2">Product Image</label>
+             <div class="appearance-none py-3 px-4 ml-10 text-gray-700 w-1/4">
+                {{ form.image }}
+            </div>
+    </div>
+    <div class="mb-5 hidden">
+        <label class="block text-sm font-bold mb-2">Seller Name</label>
+             <div class="appearance-none py-3 px-4 ml-10 text-gray-700 w-1/4">
+                {{ form.seller }}
+            </div>
+    </div>
+     <div class="mb-5">
+        <input class="bg-green-500 text-white px-5 py-2" type="submit" name="Add_product" id="Add_product" value="Add Product">
+    </div>
+</form>
+
+{% endblock %}
