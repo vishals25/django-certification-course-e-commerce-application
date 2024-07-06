@@ -131,12 +131,12 @@ Stripe is a powerful and flexible payment processing platform. The Stripe API al
 - **Dashboard**: Stripe provides a comprehensive dashboard to monitor and manage payments, subscriptions, customers, and other financial operations. The dashboard offers detailed insights and analytics to help businesses make informed decisions.
 
 **The Django and Stripe API interface:**
-<div align="center">
+
 ![stripe_api](https://github.com/vishals25/django-certification-course-e-commerce-application/assets/142819017/1f3b3b5a-c975-40bd-85c8-89d9e0c2c6ff)
-</div>
+
 ## The video attachments of the Application developed above:
 
-![Django_web_app](https://github.com/vishals25/django-certification-course-e-commerce-application/assets/142819017/9cad39c4-1e7a-46a4-959e-55affa71a9d3)
+https://github.com/vishals25/django-certification-course-e-commerce-application/assets/142819017/9cad39c4-1e7a-46a4-959e-55affa71a9d3
 
 Thank you for checking out this project! Happy coding!
 
