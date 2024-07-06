@@ -17,6 +17,14 @@
 
 This project is an online shopping platform created with Django 4.x, Python 3.x, Bootstrap, and Tailwind CSS, using an SQLite3 database. It enables users to explore a range of products, add items to their shopping cart, and complete their purchases through a streamlined checkout process using Stripe.This application aims to provide a smooth and user-friendly shopping experience, ensuring security and ease of use for both customers and administrators.
 
+--- 
+
+Django Working Architecture:
+
+![work](https://github.com/vishals25/django-certification-course-e-commerce-application/assets/142819017/070b3169-8408-4e92-be20-f96a3cabe373)
+
+---
+
 ## Key Features:
 
 - **User Authentication**: Registration, login, and logout functionality
@@ -130,9 +138,13 @@ Stripe is a powerful and flexible payment processing platform. The Stripe API al
   Users.
 - **Dashboard**: Stripe provides a comprehensive dashboard to monitor and manage payments, subscriptions, customers, and other financial operations. The dashboard offers detailed insights and analytics to help businesses make informed decisions.
 
+---
+
 **The Django and Stripe API interface:**
 
 ![stripe_api](https://github.com/vishals25/django-certification-course-e-commerce-application/assets/142819017/1f3b3b5a-c975-40bd-85c8-89d9e0c2c6ff)
+
+---
 
 ## The video attachments of the Application developed above:
 
