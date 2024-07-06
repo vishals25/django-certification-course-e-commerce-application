@@ -13,9 +13,14 @@
       <div class="font-bold text-xl mb-3 px-6 py-2">
         <h1>Name  :  {{user.username}}</h1>
       </div>
-      <div class="font-bold text-xl mb-3 px-6 py-2">
-        <h1>Ph No :  {{user.profile.contact_number}}</h1>
-      </div>
+    <div class="font-bold text-xl mb-3 px-6 py-2">
+        {% if user.profile.contact_number %}
+            <h1>Ph No: {{ user.profile.contact_number }}</h1>
+        {% else %}
+            <p class="text-lg font-normal">No more Details Shown by user</p>
+        {% endif %}
+
+    </div>
     </div>
   </div>
 </div>

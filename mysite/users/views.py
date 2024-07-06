@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from .models import Profile
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
 
@@ -16,7 +17,7 @@ def register(request):
         if form.is_valid():
             user = form.save(commit=True)
             messages.success(request, "Registration successful.")
-            return redirect(reverse_lazy('users:createprofile'))
+            return redirect(reverse_lazy('users:login'))
     else:
         form = NewUserForm()
     
@@ -36,20 +37,22 @@ def logout_view(request):
 def profile(request):
     return render(request,'users/profile.html')
 
-@login_required
-def create_profile(request):
 
-    if request.method == 'POST':
-        contact_number=request.POST.get('contact_number')
-        image=request.FILES['upload']
-        user=request.user
-        if Profile.objects.filter(user=user).exists():
-            profile=Profile.objects.get(user=user)
-        else:
-            profile=Profile(user=user,image=image,contact_number=contact_number)
-        profile.save()
-        return redirect(reverse_lazy('myapp:products'))
-    return render(request,'users/createprofile.html')
+def create_profile(request):
+    try:
+        if request.method == 'POST':
+            contact_number=request.POST.get('contact_number')
+            image=request.FILES['upload']
+            user=request.user
+            if Profile.objects.filter(user=user).exists():
+                profile=Profile.objects.get(user=user)
+            else:
+                profile=Profile(user=user,image=image,contact_number=contact_number)
+                profile.save()
+            return redirect(reverse_lazy('myapp:add_product'))
+        return render(request,'users/createprofile.html')
+    except:
+        return redirect(reverse_lazy('myapp:add_product'))
 
 
 def seller_profile(request,id):

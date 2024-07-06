@@ -2,9 +2,11 @@
 
 
 {% block content %}
-
 <form action="" class="bg-white rounded text-black shadow-md m-10 px-8 py-9 w-2/5" method="post" enctype="multipart/form-data">
     {% csrf_token %}
+    <div class="mb-5">
+        <h2 class="block text-lg mb-4">!! Create Seller_Profile To Sell Products !!</h2>
+    </div>
     <div class="mb-5">
         <label class="block text-lg font-bold mb-4">Upload Profile Image</label>
         <input placeholder="upload image :" type="file" accept="image/*" name="upload" id="upload" class="w-1/4 py-3 px-4 ml-10 text-gray-700">

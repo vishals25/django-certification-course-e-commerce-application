@@ -8,5 +8,5 @@ class Profile(models.Model):
         return self.user.username
     user = models.OneToOneField(to=User,on_delete=models.CASCADE)
     image=models.ImageField(default='profile.jpg',upload_to='profile_pictures')
-    contact_number=models.CharField(max_length=50,default='9999999999')
+    contact_number=models.CharField(max_length=50)
     

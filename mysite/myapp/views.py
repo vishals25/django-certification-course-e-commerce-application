@@ -1,5 +1,4 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
 from .models import Product,OrderDetail
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView,DetailView,TemplateView
@@ -7,17 +6,16 @@ from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.urls import reverse_lazy,reverse
 from django.core.paginator import Paginator
 from django.db.models import Q
+from users.models import Profile
+from django.core.exceptions import ValidationError
 
 # FOR PAYMENT GATEWAY
 
-from django.http import JsonResponse, HttpResponseServerError
+from django.http import JsonResponse
 from django.http.response import HttpResponseNotFound,JsonResponse
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-import stripe
-import json
-import logging
 import stripe
 
 
@@ -102,7 +100,15 @@ class ProductCreateView(CreateView):
     fields=['name','price','desc','image','seller']
     template_name='myapp/productcreate.html'
     
+    def dispatch(self, request, *args, **kwargs):
+        if not Profile.objects.filter(user=request.user).exists():
+            return redirect(reverse_lazy('users:createprofile')) 
+        return super().dispatch(request, *args, **kwargs)
+    
     def form_valid(self, form):
+        if not form.cleaned_data['name'] or not form.cleaned_data['price'] or not form.cleaned_data['desc'] or not self.request.FILES.get('image'):
+            form.add_error(None, "All fields must be filled out.")
+            return self.render_to_response(self.get_context_data(form=form))
         form.instance.seller = self.request.user
         return super().form_valid(form)
 
@@ -247,8 +253,14 @@ class PaymentSuccessView(TemplateView):
         stripe.api_key=settings.STRIPE_SECRET_KEY
         order = get_object_or_404(OrderDetail,stripe_payment_intent=session.id)
         order.has_paid=True
+        order.price = int(order.price / 100)
         order.save()
-        return render(request,self.template_name)
+        context = self.get_context_data(**kwargs)
+        context['order'] = order
+
+        return self.render_to_response(context)
+    
+        # return render(request,self.template_name)
 
 class PaymentFailedView(TemplateView):
     template_name='myapp/payment_failed.html'

@@ -1,0 +1,65 @@
+{% extends 'myapp/base.html'%}
+
+{% block content %}
+
+    <style>
+   .card {
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 50%;
+        margin: 40px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+   .card-header {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+   .card-body {
+        padding: 20px;
+    }
+
+   .card-body ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+   .card-body li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+   .card-body li:last-child {
+        border-bottom: none;
+    }
+</style>
+
+<div class="card">
+    <div class="card-header">
+        <h2>Payment Successful!</h2>
+    </div>
+    <div class="card-body">
+        <ul>
+            <li>Order ID      : {{ order.id }}</li>
+            <li>User Ordered  : {{ order.customer_username }}</li>
+            <li>Order Product : {{ order.product }}</li>
+            <li>Order Price   : $ {{ order.price }}</li>
+            <li>Order Payment : {{ order.has_paid }}</li>
+            <li>Payment Intent: {{ order.stripe_payment_intent }}</li>
+        </ul>
+        <p>Thank you for your payment! Your order has been successfully processed.</p>
+    </div>
+    <p>Continue shopping <a class="text-blue-700" href="{%  url 'myapp:products' %}">here</a>.</p>
+</div>
+
+
+
+{% endblock %}
